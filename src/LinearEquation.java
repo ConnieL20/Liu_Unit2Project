@@ -1,9 +1,9 @@
 public class LinearEquation {
     //instance variables
-    final private int  x1;
-    final private int y1;
-    final private int x2;
-    final private int y2;
+    private final int  x1;
+    private final int y1;
+    private final int x2;
+    private final int y2;
 
     //Linear Equation constructor
     public LinearEquation(int x1, int y1, int x2, int y2) {
@@ -75,9 +75,12 @@ public class LinearEquation {
 
         /* condition to print the slope in fraction form */
         if (numerator % denominator == 0) {
-            fraction = numerator / denominator + "x";
+            fraction = (int)(numerator / denominator) + "x";
+            if (numerator / denominator == 1) {
+                fraction = "" + "x";
+            }
         } else if (numerator % denominator > 0){
-          fraction = (int)numerator + "/" + (int)denominator + "x";
+            fraction = (int)numerator + "/" + (int)denominator + "x";
         }
 
         //prints a horizontal line if the y values of the given coordinates are the same.
@@ -88,7 +91,11 @@ public class LinearEquation {
         } else if (yIntercept() < 0) {
             newEquation = "y = " + fraction + " - " + Math.abs(yIntercept());
             return newEquation;
-        } else {
+        } else if (yIntercept() == 0) {
+            newEquation = "y = " + fraction;
+            return newEquation;
+        }
+        else {
             newEquation = "y = " + fraction +  " + " + yIntercept();
             return newEquation;
         }
@@ -116,10 +123,12 @@ public class LinearEquation {
 
         return info;
     }
-
-
-
 }
+
+
+
+
+
 
 
 
