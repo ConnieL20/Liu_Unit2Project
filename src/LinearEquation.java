@@ -13,11 +13,15 @@ public class LinearEquation {
         this.y2 = y2;
     }
 
-/* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
-   the nearest hundredth */
+    //helper method to round a value to the hundredth
+    public double roundedToHundredth(double toRound) {
+        return Math.round(toRound * 100.0) / 100.0;
+    }
+
+    //Calculates and returns distance between (x1, y1) and (x2, y2), rounded to the nearest hundredth
     public double distance() {
         double distance = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1) , 2));
-        distance = Math.round(distance * 100.0) / 100.0;
+        distance = roundedToHundredth(distance);
         return distance;
     }
 
@@ -27,17 +31,92 @@ public class LinearEquation {
         double differenceY = y2 - y1;
         double differenceX = x2 - x1;
         double slope = (differenceY) / (differenceX);
-        slope = Math.round(slope * 100.0) / 100.0;
+        slope = roundedToHundredth(slope);
         return slope;
     }
 
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
    (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-
-        return 0.0;
+        double mx = slope() * x1;
+        return y1 - mx;
 
     }
+
+    /* Returns a String that represents the linear equation of the line through points
+   (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5".
+
+    When generating the m value (slope), here are examples of "printable" slopes:
+       5, -5, 1/2, 6/8 (reducing not required), 8/5, -2/3, -18/7
+
+    Here are non-examples of "printable" slopes:
+ 1/-2 (should be -1/2), -4/-3 (should be 4/3), 8/4 (should be reduced to 2),
+       -12/3 (should be -4), 3/3 (should be 1), -6/6 (should be -1)
+
+    HINT: Be sure to check if the line is horizontal and return an appropriate string,
+    e.g. y = 6
+    HINT: Absolute value might be helpful for ensuring proper placement of negative sign!
+
+
+    When generating the b value, here are some examples of "printable" y-intercepts:
+       + 1.0 	- 2.35	      + 12.5		- 8.0		+ 17.19
+
+    Here are non-examples of "printable" y-intercepts:
+       - -1.0 	+ -2.35	- -12.5	+ -8.0	     - -17.19	+ 0	- 0
+
+    HINT: Absolute value might be helpful for printing negative y-intercepts as
+           subtraction!
+ */
+    public String equation() {
+        double numerator = y2 - y1;
+        double denominator = x2 -x1;
+        String newEquation = "";
+        String fraction = "";
+
+        /* condition to print the slope in fraction form */
+        if (numerator % denominator == 0) {
+            fraction = numerator / denominator + "x";
+        } else if (numerator % denominator > 0){
+          fraction = (int)numerator + "/" + (int)denominator + "x";
+        }
+
+        //prints a horizontal line if the y values of the given coordinates are the same.
+        // Else, the condition will test whether the y-intercept is negative or positive to print the correct equation.
+        if (y1 == y2) {
+            newEquation = "y = " + y1;
+            return newEquation;
+        } else if (yIntercept() < 0) {
+            newEquation = "y = " + fraction + " - " + Math.abs(yIntercept());
+            return newEquation;
+        } else {
+            newEquation = "y = " + fraction +  " + " + yIntercept();
+            return newEquation;
+        }
+
+    }
+
+    /* Returns a string that includes all information about the linear equation, each on
+   separate lines:
+     - The original points: (x1, y1) and (x2, y2)
+     - The equation of the line in y = mx + b format (using equation() method)
+     - The slope of the line, as a decimal (using slope() method)
+     - The y-intercept of the line (using yIntercept() method)
+     - The distance between the two points (using distance() method)
+
+  This method should call all other appropriate methods to get the info it needs:
+  equation(), slope(), yIntercept(), distance().
+
+  */
+    public String lineInfo() {
+        String info = "The original two points are: " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")" + "\n";
+        info += "The equation of the line between these points is: " + equation() + "\n";
+        info += "The slope of the line is: " + slope() + "\n";
+        info += "The y-intercept of the line is: " + yIntercept() + "\n";
+        info += "The distance between the two points is: " + distance() ;
+
+        return info;
+    }
+
 
 
 }

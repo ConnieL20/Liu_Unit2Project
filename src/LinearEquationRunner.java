@@ -29,10 +29,11 @@ public class LinearEquationRunner {
 
         //creates coordinate object
         LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
-        // System.out.println("The two points are: " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")");
 
-        System.out.println(equation.distance());
-        System.out.println(equation.slope());
+        //prints information on the linear equation
+        System.out.println();
+        System.out.println("------------------------------------------");
+        System.out.println(equation.lineInfo());
 
 
 
