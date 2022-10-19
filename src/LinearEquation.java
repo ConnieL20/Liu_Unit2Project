@@ -43,44 +43,26 @@ public class LinearEquation {
 
     }
 
-    /* Returns a String that represents the linear equation of the line through points
-   (x1, y1) and (x2, y2) in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5".
-
-    When generating the m value (slope), here are examples of "printable" slopes:
-       5, -5, 1/2, 6/8 (reducing not required), 8/5, -2/3, -18/7
-
-    Here are non-examples of "printable" slopes:
- 1/-2 (should be -1/2), -4/-3 (should be 4/3), 8/4 (should be reduced to 2),
-       -12/3 (should be -4), 3/3 (should be 1), -6/6 (should be -1)
-
-    HINT: Be sure to check if the line is horizontal and return an appropriate string,
-    e.g. y = 6
-    HINT: Absolute value might be helpful for ensuring proper placement of negative sign!
-
-
-    When generating the b value, here are some examples of "printable" y-intercepts:
-       + 1.0 	- 2.35	      + 12.5		- 8.0		+ 17.19
-
-    Here are non-examples of "printable" y-intercepts:
-       - -1.0 	+ -2.35	- -12.5	+ -8.0	     - -17.19	+ 0	- 0
-
-    HINT: Absolute value might be helpful for printing negative y-intercepts as
-           subtraction!
- */
+    /* Returns a String that represents the linear equation of (x1, y1) and (x2, y2)
+    in slope-intercept (y = mx + b) form, e.g. "y = 3x + 1.5". */
     public String equation() {
         double numerator = y2 - y1;
         double denominator = x2 -x1;
         String newEquation = "";
         String fraction = "";
 
-        /* condition to print the slope in fraction form */
+        /* condition to print the slope in fraction form IF the numerator is not divisible by the denominator */
         if (numerator % denominator == 0) {
             fraction = (int)(numerator / denominator) + "x";
             if (numerator / denominator == 1) {
                 fraction = "" + "x";
             }
         } else if (numerator % denominator > 0){
-            fraction = (int)numerator + "/" + (int)denominator + "x";
+            if (slope() < 0) {
+                fraction = "-" + (int)Math.abs(numerator) + "/" + (int)Math.abs(denominator) + "x";
+            } else {
+                fraction = (int)numerator + "/" + (int)denominator + "x";
+            }
         }
 
         //prints a horizontal line if the y values of the given coordinates are the same.
@@ -102,18 +84,8 @@ public class LinearEquation {
 
     }
 
-    /* Returns a string that includes all information about the linear equation, each on
-   separate lines:
-     - The original points: (x1, y1) and (x2, y2)
-     - The equation of the line in y = mx + b format (using equation() method)
-     - The slope of the line, as a decimal (using slope() method)
-     - The y-intercept of the line (using yIntercept() method)
-     - The distance between the two points (using distance() method)
-
-  This method should call all other appropriate methods to get the info it needs:
-  equation(), slope(), yIntercept(), distance().
-
-  */
+    /* returns the original two coordinate points, linear equation of the line, the slope of the line,
+    the y-intercept of the line, and the distance of the line */
     public String lineInfo() {
         String info = "The original two points are: " + "(" + x1 + ", " + y1 + ")" + " and " + "(" + x2 + ", " + y2 + ")" + "\n";
         info += "The equation of the line between these points is: " + equation() + "\n";
@@ -122,6 +94,11 @@ public class LinearEquation {
         info += "The distance between the two points is: " + distance() ;
 
         return info;
+    }
+
+    //takes in a user input
+    public String coordinateForX(double yValue) {
+        return "";
     }
 }
 

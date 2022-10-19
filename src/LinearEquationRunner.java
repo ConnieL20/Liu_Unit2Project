@@ -32,7 +32,7 @@ public class LinearEquationRunner {
 
         //prints information on the linear equation
         System.out.println();
-        System.out.println("------------------------------------------");
+        System.out.println("--------------LINE INFO---------------");
         System.out.println(equation.lineInfo());
 
 
