@@ -54,15 +54,18 @@ public class LinearEquation {
         /* condition to print the slope in fraction form IF the numerator is not divisible by the denominator */
         if (numerator % denominator == 0) {
             fraction = (int)(numerator / denominator) + "x";
-            if (numerator / denominator == 1) {
-                fraction = "" + "x";
+            if (slope() == 1) {
+                fraction = "x";
+            } else if (slope() == -1){
+                fraction = "-x";
             }
         } else if (numerator % denominator > 0){
             if (slope() < 0) {
                 fraction = "-" + (int)Math.abs(numerator) + "/" + (int)Math.abs(denominator) + "x";
-            } else {
+            } else if (slope() > 0){
                 fraction = (int)numerator + "/" + (int)denominator + "x";
             }
+            return fraction;
         }
 
         //prints a horizontal line if the y values of the given coordinates are the same.
@@ -76,8 +79,7 @@ public class LinearEquation {
         } else if (yIntercept() == 0) {
             newEquation = "y = " + fraction;
             return newEquation;
-        }
-        else {
+        } else {
             newEquation = "y = " + fraction +  " + " + yIntercept();
             return newEquation;
         }
@@ -98,7 +100,8 @@ public class LinearEquation {
 
     //takes in a user input
     public String coordinateForX(double yValue) {
-        return "";
+        double solution = roundedToHundredth(yValue * slope()) + yIntercept();
+        return "The point on the line is: (" + yValue + ", " + solution + ")";
     }
 }
 

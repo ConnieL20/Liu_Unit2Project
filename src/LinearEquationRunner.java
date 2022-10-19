@@ -27,16 +27,25 @@ public class LinearEquationRunner {
         int x2 = Integer.parseInt(coordinate2.substring(1,indexOfComma2));
         int y2 = Integer.parseInt(coordinate2.substring(indexOfComma2 + 2, indexOfParentheses2));
 
-        //creates coordinate object
-        LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
+        //before creating the object, the program will check if x1 = x2
+        if (x1 == x2) {
+            System.out.println("The points you have inputted forms a vertical line: " + "x = " + x1);
 
-        //prints information on the linear equation
-        System.out.println();
-        System.out.println("--------------LINE INFO---------------");
-        System.out.println(equation.lineInfo());
+        } else {
+            //creates an object
+            LinearEquation equation = new LinearEquation(x1, y1, x2, y2);
 
+            //prints information on the linear equation
+            System.out.println();
+            System.out.println("--------------LINE INFO---------------");
+            System.out.println(equation.lineInfo());
 
+            //asks the user to enter a x value
+            System.out.println("Enter a value for x: ");
+            double xValue = scan.nextDouble();
+            System.out.println(equation.coordinateForX(xValue));
 
+        }
 
 
     }
