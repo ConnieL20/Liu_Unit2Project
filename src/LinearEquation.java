@@ -1,6 +1,6 @@
 public class LinearEquation {
     //instance variables
-    private final int  x1;
+    private final int x1;
     private final int y1;
     private final int x2;
     private final int y2;
@@ -97,7 +97,7 @@ public class LinearEquation {
         return info;
     }
 
-    //takes in a user input
+    //takes in a user input and returns the coordinate using the user input
     public String coordinateForX(double yValue) {
         double solution = roundedToHundredth((yValue * slope()) + yIntercept());
         return "The point on the line is: (" + yValue + ", " + solution + ")";
