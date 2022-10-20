@@ -97,7 +97,7 @@ public class LinearEquation {
         return info;
     }
 
-    //takes in a user input and returns the coordinate using the user input
+    //takes in a user input and returns the coordinate using the user's input
     public String coordinateForX(double yValue) {
         double solution = roundedToHundredth((yValue * slope()) + yIntercept());
         return "The point on the line is: (" + yValue + ", " + solution + ")";
