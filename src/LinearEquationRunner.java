@@ -40,8 +40,9 @@ public class LinearEquationRunner {
             System.out.println("--------------LINE INFO---------------");
             System.out.println(equation.lineInfo());
 
-            //asks the user to enter a x value
-            System.out.println("Enter a value for x: ");
+            //asks the user to enter an x value
+            System.out.println();
+            System.out.print("Enter a value for x: ");
             double xValue = scan.nextDouble();
             System.out.println(equation.coordinateForX(xValue));
 

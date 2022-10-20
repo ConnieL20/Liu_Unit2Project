@@ -59,13 +59,12 @@ public class LinearEquation {
             } else if (slope() == -1){
                 fraction = "-x";
             }
-        } else if (numerator % denominator > 0){
+        } else {
             if (slope() < 0) {
                 fraction = "-" + (int)Math.abs(numerator) + "/" + (int)Math.abs(denominator) + "x";
             } else if (slope() > 0){
-                fraction = (int)numerator + "/" + (int)denominator + "x";
+                fraction = (int)Math.abs(numerator) + "/" + (int)Math.abs(denominator) + "x";
             }
-            return fraction;
         }
 
         //prints a horizontal line if the y values of the given coordinates are the same.
@@ -100,7 +99,7 @@ public class LinearEquation {
 
     //takes in a user input
     public String coordinateForX(double yValue) {
-        double solution = roundedToHundredth(yValue * slope()) + yIntercept();
+        double solution = roundedToHundredth((yValue * slope()) + yIntercept());
         return "The point on the line is: (" + yValue + ", " + solution + ")";
     }
 }
